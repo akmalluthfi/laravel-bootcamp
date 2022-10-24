@@ -28,7 +28,7 @@
                   <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
                 @endunless
               </div>
-              @if ($chirp->user->is(auth()->user()))
+              @can('update', $chirp)
                 <x-dropdown>
                   <x-slot name="trigger">
                     <button>
@@ -46,14 +46,13 @@
                     <form method="POST" action="{{ route('chirps.destroy', $chirp) }}">
                       @csrf
                       @method('delete')
-                      <x-dropdown-link :href="route('chirps.destroy', $chirp)"
-                        onclick="event.preventDefault(); this.closest('form').submit();">
+                      <x-dropdown-link :href="route('chirps.destroy', $chirp)" onclick="event.preventDefault(); this.closest('form').submit();">
                         {{ __('Delete') }}
                       </x-dropdown-link>
                     </form>
                   </x-slot>
                 </x-dropdown>
-              @endif
+              @endcan
             </div>
             <p class="mt-4 text-lg text-gray-900">{{ $chirp->message }}</p>
           </div>
