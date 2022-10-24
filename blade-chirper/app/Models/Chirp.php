@@ -14,9 +14,9 @@ class Chirp extends Model
         'message'
     ];
 
-    protected $dispatchesEvents = [
-        'created' => ChirpCreated::class,
-    ];
+    // protected $dispatchesEvents = [
+    //     'created' => ChirpCreated::class,
+    // ];
 
     public function user()
     {
